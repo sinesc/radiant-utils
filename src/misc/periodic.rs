@@ -1,5 +1,5 @@
 use prelude::*;
-use super::min;
+use math::min;
 
 /// A generic interval.
 #[derive(Copy, Clone)]

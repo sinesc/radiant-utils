@@ -18,8 +18,7 @@ pub mod loops {
 
 pub mod maths {
     //! Basic math types, traits and methods.
-    pub use super::math::{Angle, Vec2, Vec3, Mat4, Matrix, Vector};
-    pub use super::misc::{min, max, lerp, approach};
+    pub use super::math::{Angle, Vec2, Vec3, Mat4, Matrix, Vector, min, max, clamp, lerp, approach};
 }
 
 pub mod util {
