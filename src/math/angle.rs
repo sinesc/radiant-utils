@@ -20,11 +20,11 @@ impl<T> Angle<T> where T: Float {
         Vec2::from_angle(*self)
     }
     /// Creates an angle from a radians value.
-    pub fn from_radians(radians: T) -> Angle<T> {
+    pub fn from_radians(radians: T) -> Self {
         Angle::<T>(radians)
     }
     /// Creates an angle from a degrees value.
-    pub fn from_degrees(degrees: T) -> Angle<T> {
+    pub fn from_degrees(degrees: T) -> Self {
         Self::from_radians(degrees.to_radians())
     }
     /// Returns a normalized version of the angle.
@@ -38,9 +38,15 @@ impl<T> Angle<T> where T: Float {
             *self
         }
     }
+    /// Returns smallest directional angle between self and target.
+    pub fn diff(self: &Self, other: Self) -> Self {
+        let mut this = *self;
+        this.align_with(other);
+        this - other
+    }
     /// Mutates self so that subtracting the target will yield the smallest directional angle between self and target.
     #[allow(non_snake_case)]
-    pub fn align_with(self: &mut Self, target: &Angle<T>) -> &mut Self {
+    pub fn align_with(self: &mut Self, target: Self) -> &mut Self {
 
         let PI = NumCast::from(f64::consts::PI).unwrap();
         let two_PI = NumCast::from(f64::consts::PI * 2.0).unwrap();
