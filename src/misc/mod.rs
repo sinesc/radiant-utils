@@ -3,8 +3,6 @@ mod rng;
 mod periodic;
 mod arng;
 
-use prelude::*;
-
 pub use self::loops::{renderloop, mainloop, LoopState};
 pub use self::rng::Rng;
 pub use self::periodic::Periodic;

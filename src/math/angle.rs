@@ -27,15 +27,16 @@ impl<T> Angle<T> where T: Float {
     pub fn from_degrees(degrees: T) -> Angle<T> {
         Self::from_radians(degrees.to_radians())
     }
-    /// Mutates self to its normalized representation.
+    /// Returns a normalized version of the angle.
     #[allow(non_snake_case)]
-    pub fn normalize(self: &mut Self) -> &mut Self {
+    pub fn normalize(self: &Self) -> Self {
         let PI = NumCast::from(f64::consts::PI).unwrap();
-        let two_PI = NumCast::from(f64::consts::PI * 2.0).unwrap();
         if self.0.abs() > PI {
-            self.0 = self.0 - two_PI * ((self.0 + PI) / two_PI).floor();
+            let two_PI = NumCast::from(f64::consts::PI * 2.0).unwrap();
+            Angle(self.0 - two_PI * ((self.0 + PI) / two_PI).floor())
+        } else {
+            *self
         }
-        self
     }
     /// Mutates self so that subtracting the target will yield the smallest directional angle between self and target.
     #[allow(non_snake_case)]
