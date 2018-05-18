@@ -3,6 +3,7 @@ use prelude::*;
 use super::Vec2;
 
 /// An Angle between -PI and PI.
+#[cfg_attr(feature = "serialize-serde", derive(Deserialize, Serialize))]
 #[derive(Copy, Clone, PartialEq, PartialOrd)]
 pub struct Angle<T = f32>(pub T);
 

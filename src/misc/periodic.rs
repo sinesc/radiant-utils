@@ -3,6 +3,7 @@ use math::min;
 
 /// A generic interval.
 #[derive(Copy, Clone)]
+#[cfg_attr(feature = "serialize-serde", derive(Deserialize, Serialize))]
 pub struct Periodic<S = f32, T = S> {
     interval: T,
     next: S,

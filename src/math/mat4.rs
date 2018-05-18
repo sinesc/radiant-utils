@@ -5,6 +5,7 @@ use super::matrix::Mat4 as Mat4Type;
 
 /// A 4x4 matrix.
 #[derive(Copy, Clone)]
+#[cfg_attr(feature = "serialize-serde", derive(Deserialize, Serialize))]
 pub struct Mat4<T = f32>(pub [ [ T; 4 ]; 4 ]);
 
 impl<T> Mat4<T> where T: Float {

@@ -4,6 +4,7 @@ use super::{Vec3, Vector, Angle, Rect, Point2};
 
 /// A 2-dimensional vector.
 #[derive(Copy, Clone)]
+#[cfg_attr(feature = "serialize-serde", derive(Deserialize, Serialize))]
 pub struct Vec2<T = f32>(pub T, pub T);
 
 impl<T> Vec2<T> where T: Float {

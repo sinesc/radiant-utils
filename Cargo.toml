@@ -1,6 +1,6 @@
 [package]
 name = "radiant-utils"
-version = "0.2.0"
+version = "0.2.1"
 authors = ["Dennis Möhlmann <dmo479@gmail.com>"]
 description = "Radiant example code support library"
 documentation = "https://docs.rs/radiant-utils/"
@@ -10,3 +10,8 @@ license = "MIT"
 [dependencies]
 radiant-rs = "0.12"
 num-traits = "0.1"
+serde = { version = "1.0", optional = true }
+serde_derive = { version = "1.0", optional = true }
+
+[features]
+serialize-serde = [ "serde", "serde_derive" ]

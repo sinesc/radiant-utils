@@ -4,6 +4,7 @@ use super::Vector;
 
 /// A 3-dimensional vector.
 #[derive(Copy, Clone)]
+#[cfg_attr(feature = "serialize-serde", derive(Deserialize, Serialize))]
 pub struct Vec3<T = f32>(pub T, pub T, pub T);
 
 impl<T> Vec3<T> where T: Float {

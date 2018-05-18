@@ -1,5 +1,5 @@
 /*!
- * Radiant example code support library. 
+ * Radiant example code support library.
  *
  * # This is not the library you are looking for
  * This library implements very basic, minimally tested math/support features for the radiant-rs examples.
@@ -7,6 +7,10 @@
  */
 extern crate radiant_rs;
 extern crate num_traits;
+#[cfg(feature = "serialize-serde")]
+extern crate serde;
+#[cfg(feature = "serialize-serde")]
+#[macro_use] extern crate serde_derive;
 mod math;
 mod misc;
 mod prelude;
