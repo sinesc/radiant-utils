@@ -21,28 +21,34 @@ impl<T> Vec2<T> where T: Float {
         self.0 * other.0 + self.1 * other.1
     }
     /// Returns the direction of the vector in radians.
+    #[deprecated(since = "0.2.2", note = "use Angle::from().to_radians() instead")]
     pub fn to_radians(self: &Self) -> T {
         self.1.atan2(self.0)
     }
     /// Returns the direction of the vector in degrees.
+    #[deprecated(since = "0.2.2", note = "use Angle::from().to_degrees() instead")]
     pub fn to_degrees(self: &Self) -> T {
-        self.to_radians().to_degrees()
+        Angle::from(*self).to_degrees()
     }
     /// Returns the direction of the vector as an angle instance.
+    #[deprecated(since = "0.2.2", note = "use Angle::from() instead")]
     pub fn to_angle(self: &Self) -> Angle<T> {
-        Angle(self.to_radians())
+        Angle::from(*self)
     }
     /// Creates a unit-vector from the angle given in radians.
+    #[deprecated(since = "0.2.2", note = "use Vec2::from(Angle::from_radians()) instead")]
     pub fn from_radians(radians: T) -> Self {
         Vec2::<T>(radians.cos(), radians.sin())
     }
     /// Creates a unit-vector from the angle given in degrees.
+    #[deprecated(since = "0.2.2", note = "use Vec2::from(Angle::from_degrees()) instead")]
     pub fn from_degrees(degrees: T) -> Self {
-        Self::from_radians(degrees.to_radians())
+        Self::from(Angle::from_degrees(degrees))
     }
     /// Creates a unit-vector from given angle.
+    #[deprecated(since = "0.2.2", note = "use Vec2::from() instead")]
     pub fn from_angle(angle: Angle<T>) -> Self {
-        Self::from_radians(angle.to_radians())
+        Self::from(angle)
     }
     /// Normalizes the vector.
     pub fn normalize(mut self: Self) -> Self {
@@ -78,6 +84,15 @@ impl<T> Vec2<T> where T: Float {
         }
         self
     }
+    /// Rotates the vector by given angle.
+    pub fn rotate(self: Self, angle: Angle<T>) -> Self {
+        let cos = angle.0.cos();
+        let sin = angle.0.sin();
+        Vec2(
+            cos * self.0 - sin * self.1,
+            sin * self.0 + cos * self.1
+        )
+    }
     /// Returns outbound vector for this point and given bounding box. Subtracting
     /// it from this point will result in a point on the bounding box.
     pub fn outbound(self: &Self, bounding: Rect<T>) -> Option<Self> {
@@ -103,6 +118,14 @@ impl<T> Vec2<T> where T: Float {
 impl<T> Vector<T> for Vec2<T> where T: Copy {
     fn as_vec3(&self, neutral: T) -> Vec3<T> {
         Vec3::<T>(self.0, self.1, neutral)
+    }
+}
+
+// from angle
+
+impl<T> From<Angle<T>> for Vec2<T> where T: Float {
+    fn from(angle: Angle<T>) -> Vec2<T> {
+        Vec2::<T>(angle.0.cos(), angle.0.sin())
     }
 }
 

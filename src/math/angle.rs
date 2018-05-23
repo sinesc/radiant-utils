@@ -17,8 +17,9 @@ impl<T> Angle<T> where T: Float {
         self.0.to_degrees()
     }
     /// Returns a vector pointing in the direction of the angle.
+    #[deprecated(since = "0.2.2", note = "use Vec2::from() instead")]
     pub fn to_vec2(self: &Self) -> Vec2<T> {
-        Vec2::from_angle(*self)
+        Vec2::from(*self)
     }
     /// Creates an angle from a radians value.
     pub fn from_radians(radians: T) -> Self {
@@ -73,6 +74,14 @@ impl<T> Angle<T> where T: Float {
         }
 
         self
+    }
+}
+
+// from vector
+
+impl<T> From<Vec2<T>> for Angle<T> where T: Float {
+    fn from(vec: Vec2<T>) -> Angle<T> {
+        Angle(vec.1.atan2(vec.0))
     }
 }
 
