@@ -1,4 +1,3 @@
-use radiant_rs::{Uniform, AsUniform};
 use prelude::*;
 use super::Vec2;
 
@@ -236,12 +235,17 @@ impl<T> Div<T> for Angle<T> where T: Float {
 
 // as radiant uniform
 
+#[cfg(feature = "uniforms")]
+use radiant_rs::{Uniform, AsUniform};
+
+#[cfg(feature = "uniforms")]
 impl AsUniform for Angle<f32> {
     fn as_uniform(&self) -> Uniform {
         Uniform::Float(self.0)
     }
 }
 
+#[cfg(feature = "uniforms")]
 impl AsUniform for Angle<f64> {
     fn as_uniform(&self) -> Uniform {
         Uniform::Double(self.0)

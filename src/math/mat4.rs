@@ -1,4 +1,3 @@
-use radiant_rs::{Uniform, AsUniform};
 use prelude::*;
 use super::{Vec2, Vec3, Rect, Vector, Matrix};
 use super::matrix::Mat4 as Mat4Type;
@@ -289,6 +288,10 @@ impl<T> Mul<Mat4<T>> for Mat4<T> where T: Float {
 
 // as radiant uniform
 
+#[cfg(feature = "uniforms")]
+use radiant_rs::{Uniform, AsUniform};
+
+#[cfg(feature = "uniforms")]
 impl AsUniform for Mat4<f32> {
     fn as_uniform(&self) -> Uniform {
         let a = &self.0;
@@ -301,6 +304,7 @@ impl AsUniform for Mat4<f32> {
     }
 }
 
+#[cfg(feature = "uniforms")]
 impl AsUniform for Mat4<f64> {
     fn as_uniform(&self) -> Uniform {
         let a = &self.0;

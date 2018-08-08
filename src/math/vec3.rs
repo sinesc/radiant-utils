@@ -1,4 +1,3 @@
-use radiant_rs::{Uniform, AsUniform};
 use prelude::*;
 use super::Vector;
 
@@ -195,12 +194,17 @@ impl Mul<Vec3<f64>> for f64 {
 
 // as radiant uniform
 
+#[cfg(feature = "uniforms")]
+use radiant_rs::{Uniform, AsUniform};
+
+#[cfg(feature = "uniforms")]
 impl AsUniform for Vec3<f32> {
     fn as_uniform(&self) -> Uniform {
         Uniform::Vec3([ self.0, self.1, self.2 ])
     }
 }
 
+#[cfg(feature = "uniforms")]
 impl AsUniform for Vec3<f64> {
     fn as_uniform(&self) -> Uniform {
         Uniform::DoubleVec3([ self.0, self.1, self.2 ])
