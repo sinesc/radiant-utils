@@ -4,7 +4,7 @@ mod vec3;
 mod mat4;
 pub mod matrix;
 
-use prelude::*;
+use crate::prelude::*;
 pub use self::angle::Angle;
 pub use self::vec2::Vec2;
 pub use self::vec3::Vec3;

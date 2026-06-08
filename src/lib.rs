@@ -5,13 +5,6 @@
  * This library implements very basic, minimally tested math/support features for the radiant-rs examples.
  * It may be useful for early prototyping or super simple games, you likely want to look for something else though.
  */
-#[cfg(feature = "uniforms")]
-extern crate radiant_rs;
-extern crate num_traits;
-#[cfg(feature = "serialize-serde")]
-extern crate serde;
-#[cfg(feature = "serialize-serde")]
-#[macro_use] extern crate serde_derive;
 mod math;
 mod misc;
 mod prelude;

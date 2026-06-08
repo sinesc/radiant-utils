@@ -1,4 +1,4 @@
-use prelude::*;
+use crate::prelude::*;
 use super::{Vec3, Vector, Angle, Rect, Point2};
 
 /// A 2-dimensional vector.

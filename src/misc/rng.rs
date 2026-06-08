@@ -1,4 +1,4 @@
-use prelude::*;
+use crate::prelude::*;
 
 /// A very simple, seedable random number generator based on sin().
 #[derive(Copy, Clone, Debug)]
